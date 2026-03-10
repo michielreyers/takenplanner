@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-header>
+    @if (newTask) {
+      <h3>Taak aanmaken</h3>
+    } @else {
+      <h3>Taak bewerken</h3>
+    }
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="taskform">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Taaknaam" formControlName="name" />
+        @if (taskform.controls['name'].errors) {
+          <mat-error>Minimaal 5 karakters</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Omschrijving" formControlName="description"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <select matNativeControl required formControlName="status">
+          <option [value]="TaskStatus.TODO">To Do</option>
+          <option [value]="TaskStatus.IN_PROGRESS">In Progress</option>
+          <option [value]="TaskStatus.DONE">done</option>
+        </select>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-footer>
+    @if (!newTask) {
+      <div class="creationDate">
+        taak aangemaakt: {{ creationDate | date: 'dd MMM yyyy - HH:mm' }}
+      </div>
+    }
+    <mat-card-actions>
+      <button mat-button (click)="cancel()">Annuleren</button>
+      @if (!newTask) {
+        <button mat-button (click)="delete()">Verwijder</button>
+      }
+      <button mat-button (click)="save()" [disabled]="taskform.invalid">Opslaan</button>
+    </mat-card-actions>
+  </mat-card-footer>
+</mat-card>

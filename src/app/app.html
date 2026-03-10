@@ -1,0 +1,33 @@
+<main>
+  <mat-card id="header">
+    <mat-card-content>
+      <h1>Taken</h1>
+      <button mat-button [routerLink]="['/task/new']">Nieuwe Taak</button>
+    </mat-card-content>
+  </mat-card>
+  <div cdkDropListGroup class="task-columns">
+    @for (taskList of taskLists; track taskList.title) {
+      <mat-card class="task-column" id="todo">
+        <mat-card-header>
+          <h2>{{ taskList.title }}</h2>
+        </mat-card-header>
+        <mat-card-content
+          class="task-list"
+          cdkDropList
+          [cdkDropListData]="taskList"
+          (cdkDropListDropped)="onTaskDrop($event)"
+        >
+          @for (task of taskList.tasks(); track $index) {
+            <mat-card class="task" cdkDrag [cdkDragData]="task">
+              <mat-card-content>
+                <a [routerLink]="'task/' + task.id">{{ task.name }}</a>
+              </mat-card-content>
+            </mat-card>
+          }
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</main>
+
+<router-outlet />

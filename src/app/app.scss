@@ -1,0 +1,48 @@
+main {
+  display: grid;
+  height: calc(100vh - 6px);
+  grid-template-rows: 5em 1fr;
+  gap: 0.5em;
+  padding: 3px;
+}
+
+.task-columns {
+  display: grid;
+  gap: 0.5em;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.4;
+}
+
+.task-list {
+  height: 100%;
+}
+
+.task {
+  background-color: white;
+  min-height: 4em;
+  margin-bottom: 0.5em;
+
+  &:hover {
+    background-color: bisque;
+    cursor: pointer;
+  }
+}
+
+#header {
+  mat-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+      font-size: 1.5em;
+      margin: 0;
+    }
+  }
+}
+
+h2 {
+  font-size: 1em;
+}
