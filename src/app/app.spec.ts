@@ -31,7 +31,7 @@ describe('App', () => {
 
   it('should open the task modal for an existing task', async () => {
     const taskLink = compiled.querySelector('a[href*=mrid-2]') as HTMLAnchorElement;
-    expect(taskLink?.textContent).toContain('Unit tests maken');
+    expect(taskLink?.textContent).toContain('Unit tests');
 
     const router = TestBed.inject(Router);
     taskLink.click();
